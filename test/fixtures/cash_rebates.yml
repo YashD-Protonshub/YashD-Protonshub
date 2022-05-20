@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  percentage: 1.5
+  on_transactions: 1
+  of_amount: 1
+
+two:
+  percentage: 1.5
+  on_transactions: 1
+  of_amount: 1
