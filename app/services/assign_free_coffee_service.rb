@@ -2,6 +2,7 @@ class AssignFreeCoffeeService
 
   class << self
     def execute(user=nil, for_single_user=false)
+      # For now we are using name to find reward. We can refactor model Reward to fetch dynamically.
       reward = Reward.find_by(name: "Free Coffee", active: true)
       if user.present? && for_single_user
         can_assign_reward = user.user_rewards.where("reward_id = ? AND DATE(valid_till) > ?", reward.id, Date.today).any?

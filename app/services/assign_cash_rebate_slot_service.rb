@@ -12,6 +12,8 @@ class AssignCashRebateSlotService
   end
 
   def eligible_for_cash_rebate_slot?(user, cash_rebate)
+    #  Here we made comparison values dynamic (of_amont, on_transactions)
+    # In future if we need new criteria for it we can set new values.
     user.transactions.where("amount >= ?", cash_rebate.of_amount).count >= cash_rebate.on_transactions
   end
 end

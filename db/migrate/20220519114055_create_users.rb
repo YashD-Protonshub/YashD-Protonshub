@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :last_name
       t.date :dob
       t.string :email
-      t.integer :tier
+      t.integer :tier, default: 0
       t.bigint :country_id
       t.integer :cash_rebate_id
 
