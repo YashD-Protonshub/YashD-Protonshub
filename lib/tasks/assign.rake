@@ -1,5 +1,5 @@
 namespace :assign do
-  desc "TODO"
+  desc "Will assign Free Coffee"
   task free_coffee: :environment do
     AssignFreeCoffeeService.execute
   end

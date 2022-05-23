@@ -11,7 +11,7 @@
   puts "Created Country #{country}"
 end
 
-["Free Coffee", "Free Movie Ticket"].each do |reward|
+["Free Coffee", "Free Movie Ticket", "4x Airport Lounge Access Reward"].each do |reward|
   Reward.find_or_create_by(name: reward)
   puts "Created Reward #{reward}"
 end

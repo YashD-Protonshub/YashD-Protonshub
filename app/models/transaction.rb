@@ -12,15 +12,16 @@ class Transaction < ApplicationRecord
 
 
   def credit_reward_points
+    # Comparing amount with dynmic values.
     if is_a_domestic_transaction? && amount >= config_for_transaction.standard_amount
       self.create_reward_point(user_id: user.id, point: reward_points)
+      update_earned_reward_points
     elsif is_a_international_transaction?
       self.create_reward_point(user_id: user.id, point: reward_points)
+      update_earned_reward_points
     end
-
     # Checking for points and adding rewards if eligible
     check_and_assign_reward
-
   end
 
   def cash_rebate_for_users
@@ -46,5 +47,10 @@ class Transaction < ApplicationRecord
 
   def eligible_for_free_coffee?
     user.reward_points.where("DATE(created_at) BETWEEN ? AND ?", (Date.today - 1.month), Date.today).sum(:point) >= 100
+  end
+
+  def update_earned_reward_points
+    new_reward_points = user.earned_reward_points + reward_points
+    user.update(earned_reward_points: new_reward_points)
   end
 end

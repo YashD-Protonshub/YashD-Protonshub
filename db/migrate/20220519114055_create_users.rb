@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.integer :tier, default: 0
       t.bigint :country_id
       t.integer :cash_rebate_id
-
+      t.integer :earned_reward_points, default: 0
       t.timestamps
     end
   end
