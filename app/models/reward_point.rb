@@ -16,11 +16,11 @@ class RewardPoint < ApplicationRecord
       user_tier = 2
     end
     unless user_tier.eql?(user.tier)
-      user.update_column("tier", user_tier)
-      if user.tier == User.tiers["Gold"]
+      user.update(tier: user_tier)
+      if user.tier == "Gold"
         reward = Reward.find_by(name: "4x Airport Lounge Access Reward", active: true)
         can_assign_reward = user.user_rewards.where("reward_id = ? AND DATE(valid_till) > ?", reward.id, Date.today).any?
-        user.user_rewards.create(reward_id: reward.id, valid_till: (Date.today + 1.month), availed: false) unless can_assign_reward
+        user.user_rewards.create!(reward_id: reward.id, valid_till: (Date.today + 1.month), availed: false) unless can_assign_reward
       end
     end
   end
